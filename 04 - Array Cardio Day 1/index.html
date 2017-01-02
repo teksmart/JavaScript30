@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Array Cardio 💪</title>
+	<script src="data.js"></script>
+</head>
+<body>
+
+<p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
+
+<script>
+	// Array.prototype.filter()
+	// 1. Filter the list of inventors for those who were born in the 1500's
+	console.log(
+		inventors.filter( ( { year } ) => ( 1499 < year && year < 1600 ) )
+	);
+
+	// Array.prototype.map()
+	// 2. Give us an array of the inventors' first and last names
+	console.log(
+		inventors.map( ( { first, last } ) => `${first} ${last}` )
+	);
+
+	// Array.prototype.sort()
+	// 3. Sort the inventors by birthdate, oldest to youngest
+	console.log(
+		inventors.sort( ( { year: a }, { year: b } ) => ( a - b ) )
+	);
+
+	// Array.prototype.reduce()
+	// 4. How many years did all the inventors live?
+	console.log(
+		inventors.reduce( ( sum, { year, passed } ) => ( sum + ( passed - year ) ), 0 )
+	);
+
+	// 5. Sort the inventors by years lived
+	console.log(
+		inventors.sort( ( a, b ) => ( ( a.passed - a.year ) - ( b.passed - b.year ) ) )
+	);
+
+	// 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
+	// https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+	// TODO: Paste the following code in your console on the Wikipedia page:
+//	Array.from( document.querySelector( '.mw-category' ).getElementsByTagName( 'a' ) )
+//		.map( ( el ) => el.text )
+//		.filter( ( name ) => name.includes( 'de' ) );
+
+	// 7. sort Exercise
+	// Sort the people alphabetically by last name
+	console.log(
+		people.sort( ( a, b ) => ( a.split( ',' )[0] > b.split( ',' )[0] ) )
+	);
+
+	// 8. Reduce Exercise
+	// Sum up the instances of each of these
+	console.log(
+		data.reduce( ( sums, item ) => {
+			sums[ item ] = ( sums[ item ] || 0 ) + 1;
+
+			return sums;
+		}, {} )
+	);
+</script>
+
+</body>
+</html>
