@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Array Cardio 💪💪</title>
+	<script src="data.js"></script>
+</head>
+<body>
+
+<p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
+
+<script>
+	// Some and Every Checks
+	const thisYear = ( new Date() ).getFullYear();
+	const isNineteenOrOlder = ( { year } ) => ( 19 <= thisYear - year );
+
+	// Array.prototype.some() // is at least one person 19 or older?
+	console.log( people.some( isNineteenOrOlder ) );
+
+	// Array.prototype.every() // is everyone 19 or older?
+	console.log( people.every( isNineteenOrOlder ) );
+
+	// Array.prototype.find()
+	// Find is like filter, but instead returns just the one you are looking for
+	// find the comment with the ID of 823423
+	console.log( comments.find( ( { id } ) => ( 823423 === id ) ) );
+
+	// Array.prototype.findIndex()
+	// Find the comment with this ID
+	const index = comments.findIndex( ( { id } ) => ( 823423 === id ) );
+
+	console.log( comments[ index ] );
+
+	// delete the comment with the ID of 823423
+	comments.splice( index, 1 );
+
+	console.log( comments );
+</script>
+
+</body>
+</html>
