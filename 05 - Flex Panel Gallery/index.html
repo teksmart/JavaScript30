@@ -71,7 +71,7 @@
 	function handleTransition( e ) {
 		if ( this.classList.contains( 'closing' ) ) {
 			if (
-				( this.classList.contains( 'open' ) && e.propertyName.contains( 'flex' ) )
+				( this.classList.contains( 'open' ) && e.propertyName.includes( 'flex' ) )
 				|| 'transform' === e.propertyName
 			) {
 				this.classList.remove( 'open' );
@@ -81,7 +81,7 @@
 			return;
 		}
 
-		if ( this.classList.contains( 'open' ) && e.propertyName.contains( 'flex' ) ) {
+		if ( this.classList.contains( 'open' ) && e.propertyName.includes( 'flex' ) ) {
 			this.classList.add( 'open-active' );
 		}
 	}
