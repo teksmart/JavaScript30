@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HTML5 Canvas</title>
+
+	<style>
+		html,
+		body {
+			margin: 0;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+
+<canvas id="draw" width="800" height="800"></canvas>
+
+<script>
+	const canvas = document.getElementById( 'draw' );
+	const context = canvas.getContext( '2d' );
+
+	let hue = 0;
+	let lastPosition;
+	let penDown;
+
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+
+	context.lineCap = 'round';
+	context.lineJoin = 'round';
+
+	function paint( position ) {
+		if ( ! penDown ) {
+			return;
+		}
+
+		context.beginPath();
+		context.moveTo( ...lastPosition );
+		context.lineTo( ...position );
+		context.stroke();
+
+		lastPosition = position;
+	}
+
+	canvas.addEventListener( 'mousemove', ( e ) => paint( [ e.offsetX, e.offsetY ] ) );
+
+	canvas.addEventListener( 'mousedown', ( e ) => {
+		penDown = true;
+		lastPosition = [ e.offsetX, e.offsetY ];
+	} );
+
+	canvas.addEventListener( 'mouseup', () => penDown = false );
+	canvas.addEventListener( 'mouseleave', () => penDown = false );
+
+	setInterval( () => penDown || ( context.strokeStyle = `hsl( ${hue = ( hue + 1 ) % 360}, 50%, 50%)` ), 25 );
+	setInterval( () => penDown || ( context.lineWidth = ( context.lineWidth % 72 ) + 1 ), 50 );
+</script>
+
+</body>
+</html>
