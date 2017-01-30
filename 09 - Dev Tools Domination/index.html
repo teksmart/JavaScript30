@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Console Tricks!</title>
+</head>
+<body>
+
+<p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+<script>
+	const dogs = [
+		{
+			name: 'Snickers',
+			age: 2
+		},
+		{
+			name: 'hugo',
+			age: 8
+		},
+	];
+
+	function makeGreen() {
+		const p = document.querySelector( 'p' );
+
+		p.style.color = '#BADA55';
+		p.style.fontSize = '50px';
+	}
+
+	/**
+	 * Firefox doesn't have "Break on...", but it lists event listeners directly in the Inspector. Yay!
+	 */
+
+	// Regular
+	console.log( 'message' );
+
+	// Interpolated
+	console.log( 'message with a %s', 'placeholder' );
+
+	// Styled
+	console.log( '%cmessage with style', 'color: red; font-size: 24px; font-weight: 600' );
+
+	// warning!
+	console.warn( 'warning message' );
+
+	/**
+	 * Firefox does NOT include a stack trace in warning messages.
+	 */
+
+	// Error :|
+	console.error( 'error message' );
+
+	// Info
+	console.info( 'info message' );
+
+	// Testing
+	console.assert( false, 'expected false to be true' );
+
+	// clearing
+	//	console.clear();
+
+	// Viewing DOM Elements
+	const p = document.querySelector( 'p' );
+
+	console.log( p );
+	console.dir( p );
+
+	// Grouping together
+	dogs.forEach( ( dog ) => {
+		console.groupCollapsed( dog.name );
+		console.log( `This is ${dog.name}.` );
+		console.log( `${dog.name} is ${dog.age} years old.` );
+		console.log( `${dog.name} is ${Math.min( 2, dog.age ) * 10.5 + Math.max( 0, dog.age - 2 ) * 4} years old.` );
+		console.groupEnd( dog.name );
+	} );
+
+	/**
+	 * In Firefox, groups are neither collapsed by default (when using groupCollapsed), nor CAN they even be collapsed!
+	 */
+
+	// counting
+	console.count( 'counter' );
+	console.count( 'counter' );
+	console.count( 'counter' );
+
+	// timing
+	console.time( 'fetching' );
+	setTimeout( () => console.timeEnd( 'fetching' ), 1234 );
+
+	// table
+	console.table( dogs );
+</script>
+
+</body>
+</html>
