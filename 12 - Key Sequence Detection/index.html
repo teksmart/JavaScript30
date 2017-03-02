@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Key Detection</title>
+</head>
+<body>
+
+<script>
+	const keySequence = [
+		'ArrowUp',
+		'ArrowUp',
+		'ArrowDown',
+		'ArrowDown',
+		'ArrowLeft',
+		'ArrowRight',
+		'ArrowLeft',
+		'ArrowRight',
+		'b',
+		'a',
+	];
+
+	let userInput = new Array( keySequence.length );
+
+	window.addEventListener( 'keydown', ( { key } ) => {
+		userInput = [ ...userInput.slice( 1 ), key ];
+
+		if ( keySequence.every( ( v, k ) => v === userInput[ k ] ) ) {
+			alert( 'Yatta!' );
+		}
+	} );
+</script>
+
+</body>
+</html>
